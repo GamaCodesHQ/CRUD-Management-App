@@ -20,15 +20,15 @@ namespace Students_Test
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            // Check if ID is empty
-            if (string.IsNullOrWhiteSpace(label1.Text))
+            // Check if ID field is empty
+            if (string.IsNullOrWhiteSpace(txtID.Text))
             {
                 MessageBox.Show("Please enter a Product ID.");
                 return;
             }
 
-            // Check for duplicate
-            DataRow[] duplicates = dt.Select($"ProductID = '{label1.Text}'");
+            // Check for duplicates
+            DataRow[] duplicates = dt.Select($"ProductID = '{txtID.Text}'");
 
             if (duplicates.Length > 0)
             {
@@ -37,7 +37,7 @@ namespace Students_Test
             else
             {
                 dt.Rows.Add(label1.Text, txtName.Text);
-                // Optional: Clear boxes after adding
+                // Inorder Clear boxes after clicking add
                 txtID.Clear();
                 txtName.Clear();
             }
@@ -64,7 +64,7 @@ namespace Students_Test
 
             if (foundRows.Length > 0)
             {
-                // This removes only the specific row found
+                // This line removes only the specific row found
                 foundRows[0].Delete();
                 dt.AcceptChanges(); // Crucial to finalize the change
             }
